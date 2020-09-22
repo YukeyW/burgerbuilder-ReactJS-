@@ -3,18 +3,19 @@ import Modal from '../../component/UI/Modal/Modal'
 
 const withErrorHandler = (WrapperComponent, axios) => {
     return class extends Component {
+        
         state= {
             error: null
         }
 
-        componentDidMount () {
+        componentWillMount () {
             this.reqInterceptor=axios.interceptors.request.use(request => {
                 this.setState({error: null});
                 return request;
             });
             this.resInterceptor=axios.interceptors.response.use(res => res,  error => {
                 this.setState({error: error});
-            })
+            });
         }
 
         componentWillUnmount() {
@@ -29,7 +30,8 @@ const withErrorHandler = (WrapperComponent, axios) => {
         render() {
             return (
                 <Fragment>
-                    <Modal show={this.state.error} modalClosed={this.errorConfirmedHandler}>
+                    <Modal show={this.state.error} 
+                           modalClosed={this.errorConfirmedHandler}>
                         {this.state.error ? this.state.error.message: null}
                     </Modal>
                     <WrapperComponent {...this.props}/>

@@ -8,9 +8,6 @@ export const Contact = styled.div`
     border: 1px solid #eee;
     padding:  10px;
     box-sizing: border-box;
-    @media(min-width: 600px) {
-        width: 500px;
-    }
 `;
 
 export const Button = styled.button`
@@ -23,4 +20,8 @@ export const Button = styled.button`
     padding: 10px;
     margin: 10px;
     font-weight: bold;
+    &:disabled {
+        color: #ccc;
+        cursor: not-allowed;
+    }
 `;

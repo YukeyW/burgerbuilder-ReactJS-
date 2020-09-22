@@ -1,15 +1,12 @@
 import React from 'react';
-import { NavigationItems, NavigationItem } from './style';
-import { NavLink } from 'react-router-dom';
+import { NavigationItems } from './style';
+import NavigationItem from './NavigationItem/NavigationItem';
 
 const navigationItems = (props) => (
     <NavigationItems>
-        <NavigationItem>
-            <NavLink to='/' exact>Burger Builder</NavLink>
-        </NavigationItem>
-        <NavigationItem>
-            <NavLink to='/orders'>Orders</NavLink>
-        </NavigationItem>
+        <NavigationItem link='/' exact>Burger Builder</NavigationItem>
+        {props.isAuthenticate ? <NavigationItem link='/orders'>Orders</NavigationItem> : null}
+        {!props.isAuthenticate ? <NavigationItem link='/Auth'>Authenticate</NavigationItem> : <NavigationItem link='/Logout'>Logout</NavigationItem>}
     </NavigationItems>
 );
 
